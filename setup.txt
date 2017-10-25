@@ -1,0 +1,68 @@
+########################################################
+# Starting With A Clean Install of Rasbain  
+########################################################
+
+sudo raspi-config
+enable camera
+enable SPI
+cange to us default keyboard
+
+sudo apt-get update
+sudo apt-get upgrade
+
+########################################################
+# Install the Jpeg Libraries, necassary to display
+# the logos on the interface screen
+########################################################
+sudo apt-get install libjpeg8-dev indent libfreetype6-dev ttf-dejavu-core
+
+sudo apt-get install cmake
+
+########################################################
+# Increase Memory available to the GPU
+########################################################
+sudo nano /boot/config.txt
+gpu_mem=256
+
+########################################################
+# Created Directory Desktop/Rebound
+# Created Directory Desktop/Rebound/userland
+# in that directory....
+########################################################
+git clone https://github.com/raspberrypi/userland
+
+########################################################
+
+The Rebound interface at this point consists of three
+parts.
+1) The interface wich is uses OpenVG and Sockets
+2) A modified version of raspistill
+3) A modified version of raspivid
+
+The interface file uses GPIO and SPI input and generates
+socket output to control the raspistill application.
+
+The source code for all of the interface is located in
+the directory Desktop/Rebound.
+
+The source code for the modified raspistill and raspivid
+are located in Desktop/Rebound/userland/userland.
+make raspistill
+make raspivid
+commands can be run in the userland directory.
+
+########################################################
+# modified files include ....
+/home/pi/Desktop/Rebound/userland/userland/host_applications/linux/apps/raspicam
+RaspiStill.c
+RaspiVid.c
+RaspiTex.c
+RaspiTex.h
+RaspiCamControl.c
+Makefile
+
+########################################################
+/home/pi/Desktop/Rebound/userland/userland/host_applications/linux/apps/raspicam/gl_scenes
+circle.c
+circle.h
+

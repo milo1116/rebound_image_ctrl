@@ -1,0 +1,4 @@
+# This is the command line that the rebound viewer uses to start raspi still
+# the last %s is filled in by the program with the values from the current knob
+# postitions.
+sudo ./userland/userland/build/bin/raspistill -g -t 0 -ex off -ss 55000 -awb off -awbg 1.1,1.6 %s
